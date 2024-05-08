@@ -38,6 +38,12 @@ def save_to_csv(data, filename='output.csv'):
             writer.writerow(item)
 
 # Приклад використання:
-url = 'https://www.olx.ua/uk/elektronika/klimaticheskoe-oborudovanie/q-/?currency=UAH'
-data = extract_data_from_page(url)
-save_to_csv(data, 'Airconditioning_data.csv')
+
+data = []
+for i in range(4):  # спарсить перші 5 сторінок
+    print(f'Parsing this page {i} from 3')
+    if i == 0:
+        continue
+    url = f'https://www.olx.ua/uk/elektronika/klimaticheskoe-oborudovanie/q-/?currency=UAH&page={i}'
+    data += extract_data_from_page(url)
+save_to_csv(data, 'Airconditioning.csv')
